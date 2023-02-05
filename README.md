@@ -16,6 +16,6 @@ Allows you to control the "jointeam" command:
 
 ### Console Variables
 
-* sm_jointeamcontrol_limit_allies - Maximum number (no limit: -1) of players in the Allies team [default: "-1"]
-* sm_jointeamcontrol_limit_axis - Maximum number (no limit: -1) of players in the Axis team [default: "-1"]
+* sm_jointeamcontrol_limit_allies - Maximum number of players in the Allies team [default: "16"]
+* sm_jointeamcontrol_limit_axis - Maximum number of players in the Axis team [default: "16"]
 * sm_jointeamcontrol_immunity_flags - Player immunity flags [default: "b"]
