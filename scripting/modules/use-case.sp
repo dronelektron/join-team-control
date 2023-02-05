@@ -1,29 +1,30 @@
-bool UseCase_IsTeamFull(int client, int team) {
+UseCaseResult UseCase_TeamFull(int client, int team, bool &isTeamFull) {
     if (team < TEAM_ALLIES) {
-        return false;
+        return UseCaseResult_Ignored;
     }
 
     if (UseCase_IsClientHasImmunity(client)) {
-        return false;
+        isTeamFull = false;
+
+        return UseCaseResult_Handled;
     }
 
-    int limit = team == TEAM_ALLIES ? Variable_AlliesLimit() : Variable_AxisLimit();
+    int clientsCount = GetTeamClientCount(team);
+    int clientsLimit = team == TEAM_ALLIES ? Variable_AlliesLimit() : Variable_AxisLimit();
 
-    if (limit == NO_LIMIT) {
-        return false;
-    }
+    isTeamFull = clientsCount >= clientsLimit;
 
-    int count = GetTeamClientCount(team);
-
-    return count >= limit;
+    return UseCaseResult_Handled;
 }
 
-bool UseCase_IsTeamStacked(int client, int newTeam, int currentTeam) {
-    if (newTeam == currentTeam || UseCase_IsClientHasImmunity(client)) {
-        return false;
+UseCaseResult UseCase_TeamStacked(int client, bool &isTeamStacked) {
+    if (UseCase_IsClientHasImmunity(client)) {
+        isTeamStacked = false;
+
+        return UseCaseResult_Handled;
     }
 
-    return true;
+    return UseCaseResult_Ignored;
 }
 
 bool UseCase_IsClientHasImmunity(int client) {

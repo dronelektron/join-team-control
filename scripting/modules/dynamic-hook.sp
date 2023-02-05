@@ -46,25 +46,27 @@ public MRESReturn DynamicHook_JoinTeam(int pThis) {
 
 public MRESReturn DynamicHook_TeamFull(DHookReturn hReturn, DHookParam hParams) {
     int team = DHookGetParam(hParams, 1);
+    bool isTeamFull;
+    UseCaseResult result = UseCase_TeamFull(g_joinTeamClient, team, isTeamFull);
 
-    if (UseCase_IsTeamFull(g_joinTeamClient, team)) {
+    if (result == UseCaseResult_Ignored) {
         return MRES_Ignored;
     }
 
-    DHookSetReturn(hReturn, false);
+    DHookSetReturn(hReturn, isTeamFull);
 
     return MRES_Supercede;
 }
 
 public MRESReturn DynamicHook_TeamStacked(DHookReturn hReturn, DHookParam hParams) {
-    int newTeam = DHookGetParam(hParams, 1);
-    int currentTeam = DHookGetParam(hParams, 2);
+    bool isTeamStacked;
+    UseCaseResult result = UseCase_TeamStacked(g_joinTeamClient, isTeamStacked);
 
-    if (UseCase_IsTeamStacked(g_joinTeamClient, newTeam, currentTeam)) {
+    if (result == UseCaseResult_Ignored) {
         return MRES_Ignored;
     }
 
-    DHookSetReturn(hReturn, false);
+    DHookSetReturn(hReturn, isTeamStacked);
 
     return MRES_Supercede;
 }
