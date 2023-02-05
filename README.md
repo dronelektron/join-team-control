@@ -1,6 +1,9 @@
 # Join team control
 
-Allows you to control the "jointeam" command
+Allows you to control the "jointeam" command:
+
+* Bypass spawn point limit
+* Join a stacked team
 
 ### Supported Games
 
@@ -9,4 +12,10 @@ Allows you to control the "jointeam" command
 ### Installation
 
 * Download latest [release](https://github.com/dronelektron/join-team-control/releases) (compiled for SourceMod 1.11)
-* Extract "plugins" folder to "addons/sourcemod" folder of your server
+* Extract "plugins" and "gamedata" folders to "addons/sourcemod" folder of your server
+
+### Console Variables
+
+* sm_jointeamcontrol_limit_allies - Maximum number (no limit: -1) of players in the Allies team [default: "-1"]
+* sm_jointeamcontrol_limit_axis - Maximum number (no limit: -1) of players in the Axis team [default: "-1"]
+* sm_jointeamcontrol_immunity_flags - Player immunity flags [default: "b"]
