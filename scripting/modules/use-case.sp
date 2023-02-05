@@ -28,14 +28,8 @@ UseCaseResult UseCase_TeamStacked(int client, bool &isTeamStacked) {
 }
 
 bool UseCase_IsClientHasImmunity(int client) {
-    AdminId adminId = GetUserAdmin(client);
-
-    if (adminId == INVALID_ADMIN_ID) {
-        return false;
-    }
-
-    int adminFlags = GetAdminFlags(adminId, Access_Effective);
+    int userFlags = GetUserFlagBits(client);
     int immunityFlags = Variable_ImmunityFlags();
 
-    return (adminFlags & immunityFlags) > 0;
+    return (userFlags & immunityFlags) > 0;
 }
